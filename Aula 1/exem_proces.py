@@ -5,7 +5,7 @@
 """
 
 import numpy as np
-import matplotlib.pyplot as matp
+import matplotlib.pyplot as plt
 
 
 # Lendo arquivo como binario
@@ -29,27 +29,27 @@ for i in range(itera):
     final_data[i] = s[i] * ganho
 
 
-matp.figure("Figura 1",figsize=(15,8))
+plt.figure("Figura 1",figsize=(15,8))
 
 # Plotando a saída
-matp.subplot(211)
-matp.title("Sinal de entrada")
-matp.xlabel("Número de amostras")
-matp.ylabel("Amplitude da saída")
-matp.grid(1)
-matp.plot(s)
+plt.subplot(211)
+plt.title("Sinal de entrada")
+plt.xlabel("Número de amostras")
+plt.ylabel("Amplitude da saída")
+plt.grid(1)
+plt.plot(s)
 
-matp.subplot(212)
-matp.title("Sinal de saída")
-matp.xlabel("Número de amostras")
-matp.ylabel("Amplitude da saída")
-matp.grid(1)
-matp.plot(final_data,color='red')
+plt.subplot(212)
+plt.title("Sinal de saída")
+plt.xlabel("Número de amostras")
+plt.ylabel("Amplitude da saída")
+plt.grid(1)
+plt.plot(final_data,color='red')
 
 
-matp.tight_layout()
+plt.tight_layout()
 
-matp.show()
+plt.show()
 
 # Salvando o arquivo de saída
 with open("sinal_saida.pcm", "wb") as new_file:
@@ -58,5 +58,5 @@ with open("sinal_saida.pcm", "wb") as new_file:
     new_file.close()
 
 # Salvando os gráficos
-matp.savefig("graficos_sinais.png", format="png")
+plt.savefig("graficos_sinais.png", format="png")
 
