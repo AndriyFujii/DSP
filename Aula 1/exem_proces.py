@@ -49,8 +49,6 @@ plt.plot(final_data,color='red')
 
 plt.tight_layout()
 
-plt.show()
-
 # Salvando o arquivo de saída
 with open("sinal_saida.pcm", "wb") as new_file:
     for data in final_data:
@@ -60,3 +58,5 @@ with open("sinal_saida.pcm", "wb") as new_file:
 # Salvando os gráficos
 plt.savefig("graficos_sinais.png", format="png")
 
+
+plt.show()

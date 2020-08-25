@@ -4,47 +4,93 @@
 @author: Andriy
 """
 
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 
+def step(t):
+    z = []
+    for x in t:
+        if x > 0.0:
+            z.append(1)
+        else:
+            z.append(0)
+    return z
+
+def unit(t):
+    z = []
+    for x in t:
+        if x == 0:
+            z.append(1)
+        else:
+            z.append(0)
+    return z
+    
 
 plt.figure("Gráficos",figsize=(15,8))
 
 # Plotando os gráficos
-x = np.arange(0, 8, 0,1)
+x = np.linspace(-1, 8, 10)
+
 # Impulso unitário
-pulso = signal.unit_impulse(8)
+#pulso = signal.unit_impulse(10, idx = 1)
+pulso = unit(x)
 
 plt.subplot(411)
-plt.title("Sinal de entrada")
-plt.xlabel("Número de amostras")
+plt.title("Impulso unitário")
+plt.xlabel("n")
 plt.ylabel("Amplitude da saída")
 plt.grid(1)
-plt.stem(t, pulso)
+plt.stem(x, pulso)
+plt.xticks(np.arange(-1, 8.1, 1))
+plt.yticks(np.arange(0, 1.1, 1))
+
+# Degrau unitário
+degrau = step(x)
 
 plt.subplot(412)
-plt.title("Sinal de saída")
-plt.xlabel("Número de amostras")
+plt.title("Degrau unitário")
+plt.xlabel("n")
 plt.ylabel("Amplitude da saída")
 plt.grid(1)
-plt.plot(t, final_data,color='red')
+plt.stem(x, degrau)
+plt.xticks(np.arange(-1, 8.1, 1))
+plt.yticks(np.arange(0, 1.1, 1))
 
-plt.subplot(412)
-plt.title("Sinal de saída")
-plt.xlabel("Número de amostras")
+# Seno
+seno = np.sin(x)
+
+plt.subplot(413)
+plt.title("Sequência sinusoidal")
+plt.xlabel("n")
 plt.ylabel("Amplitude da saída")
 plt.grid(1)
-plt.plot(t, final_data,color='red')
+plt.stem(x, seno)
+plt.xticks(np.arange(-1, 8.1, 1))
+plt.yticks(np.arange(0, 1.1, 1))
 
+# Exponencial
+exponencial1 =  5 ** x
+
+plt.subplot(414)
+plt.title("Sequência sinusoidal")
+plt.xlabel("n")
+plt.ylabel("Amplitude da saída")
+plt.grid(1)
+plt.stem(x, exponencial1)
+plt.xticks(np.arange(-1, 8.1, 1))
+plt.yticks(np.arange(0, 2.1, 1))
 
 
 plt.tight_layout()
 
-plt.show()
+
 
 
 
 # Salvando os gráficos
 plt.savefig("graficos_sinais.png", format="png")
+
+plt.show()
 
