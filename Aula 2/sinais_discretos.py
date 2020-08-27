@@ -96,7 +96,7 @@ plt.ylabel("x[n]")
 plt.grid(1)
 plt.stem(x2, exponencial2)
 plt.xticks(np.arange(-1, 30.1, 1))
-plt.yticks(np.arange(-2, 0.1, 1))
+plt.yticks(np.arange(-2, 1.1, 1))
 
 # Exponencial3
 exponencial2 =  2 ** x
