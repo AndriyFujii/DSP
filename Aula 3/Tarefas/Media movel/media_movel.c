@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define k 16  // tamanho da media
+#define k 512  // tamanho da media
 
 int main()
 {
@@ -34,19 +34,17 @@ int main()
         double *y = malloc(itera * sizeof(double));
         double *result = malloc(itera * sizeof(double));
 
-        for (int i = 0; i < itera; i++)
+        // Calculo media movel
+        for (int i = 0; i < itera - k; i++)
         {
-            y[0] = x[i];
             double sum = 0;
-
-            for (int n = 0; n < k; n++)
-                sum += coef[n] * y[n];
-
-            result[i] = sum;
-
-            for (int n = k; n < 2; n--)
-                x[n] = x[n-1];
+            for (int j = 0; j < k; j++)
+            {
+                sum += x[i+j];
+            }
+            result[i] = sum * (1.0 / k);
         }
+
         //Salvando arquivo de saida
         file = fopen("wn_media_movel.pcm", "wb");
         fwrite(result, sizeof(double), itera, file);
