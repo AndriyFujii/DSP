@@ -1,57 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define k 512  // tamanho da media
+#define k 4  // tamanho da media
+
+int somaVetor(int *vet)
+{
+    int soma =0;
+    for (int i = 0; i < k; i++)
+    {
+        soma += vet[i];
+    }
+    return soma;
+}
+
+void deslocaVetor(int *vet)
+{
+    for (int i = k-1; i > k; i--)
+    {
+        vet[i] = vet[i-1];
+    }
+}
 
 int main()
 {
     //Abrindo o arquivo como leitura e binario
-    FILE *file;
-    file = fopen("wn.pcm", "rb");
-    if (file == NULL)
+    FILE *input;
+    input = fopen("wn.pcm", "rb");
+    if (input == NULL)
     {
         printf("Nao foi possivel encontrar o arquivo\n");
     }
     //Se conseguiu abrir, faz o algoritmo
     else
     {
-        double coef[k];
+        //Cria arquivo de saida para salvar durante o calculo
+        FILE *output;
+        output = fopen("wn_media_movel.pcm", "wb");
+
+        int vetAux[k];
+        //Zerando buffer
         for (int i = 0; i < k; i++)
         {
-            coef[i] = 1.0 / k;
+            vetAux[i] = 0;
         }
-        fseek(file, 0, SEEK_END);
 
-        int itera;
-        //Tamanho do arquivo
-        itera = ftell(file)/sizeof(short);
-        rewind(file);
-        
-        //Aloca a memoria para X e le o vetor do arquivo
-        short *x = malloc(itera * sizeof(short));
-        fread(x, sizeof(short), itera, file);
-        fclose(file);
-
-        double *y = malloc(itera * sizeof(double));
-        double *result = malloc(itera * sizeof(double));
-
-        // Calculo media movel
-        for (int i = 0; i < itera - k; i++)
+        short dado = 0;
+        while(fread(&dado, 2, 1, input) != 0)
         {
-            double sum = 0;
-            for (int j = 0; j < k; j++)
-            {
-                sum += x[i+j];
-            }
-            result[i] = sum * (1.0 / k);
+            vetAux[0] = dado;
+            short soma = somaVetor(vetAux)/k;
+            fwrite(&soma, 2, 1, output);
+            deslocaVetor(vetAux);
         }
 
-        //Salvando arquivo de saida
-        file = fopen("wn_media_movel.pcm", "wb");
-        fwrite(result, sizeof(double), itera, file);
-
-        free(result);
-        free(y);
-        free(x);
+        fclose(input);
+        fclose(output);
     }
     return 0;
 }
