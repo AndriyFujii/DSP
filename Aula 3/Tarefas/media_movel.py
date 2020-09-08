@@ -7,12 +7,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def moving_average(data, k) : 
-    ret = np.cumsum(data, dtype=float)
-    ret[k:] = ret[k:] - ret[:-k] 
-    return ret[k - 1:] / k
-
-
 # Lendo arquivo como binario
 try:
     with open ('wn.pcm', 'rb') as file:
@@ -23,13 +17,22 @@ except:
     exit(0)
     
 entrada = np.frombuffer (fid, dtype = 'int16')
-itera = len(entrada) #N
+itera = len(entrada)
 
 # Tamanho da media
 # k = 4, 8 , 16, 32, 64, 128, 256, 512, 1024
-k = 512
+k = 4
 
-saida = moving_average(entrada, k)
+saida = np.zeros(itera, dtype = "int16");
+buffer = np.zeros(k, dtype = "int16");
+
+# Calculo da media movel
+for i in range(itera):
+    buffer[0] = entrada[i]
+    soma = np.sum(buffer)/k
+    saida[i] = soma
+    fid = buffer[0:k-1]
+    buffer[1:itera] = fid
 
 plt.figure("Figura 1",figsize=(15,8))
 
