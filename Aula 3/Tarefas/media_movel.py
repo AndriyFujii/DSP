@@ -23,8 +23,8 @@ itera = len(entrada)
 # k = 4, 8 , 16, 32, 64, 128, 256, 512, 1024
 k = 4
 
-saida = np.zeros(itera, dtype = "int16");
-buffer = np.zeros(k, dtype = "int16");
+saida = np.zeros(itera, dtype = "int16")
+buffer = np.zeros(k, dtype = "int16")
 
 # Calculo da media movel
 for i in range(itera):
