@@ -31,8 +31,8 @@ plt.xlabel("n")
 plt.ylabel("x[n]")
 plt.grid(1)
 plt.plot(mod_x)
-plt.xticks(np.arange(-1, 8.1, 1))
-plt.yticks(np.arange(0, 1.1, 1))
+plt.xticks(np.arange(-1, 200.1, 25))
+plt.yticks(np.arange(0, 2.1, 0.5))
 
 
 plt.subplot(212)
@@ -40,16 +40,12 @@ plt.title("Fase X")
 plt.xlabel("n")
 plt.ylabel("x[n]")
 plt.grid(1)
-plt.plot(mod_x)
-plt.xticks(np.arange(-1, 8.1, 1))
-plt.yticks(np.arange(0, 1.1, 1))
-
+plt.plot(fase_x)
+plt.xticks(np.arange(-1, 200.1, 25))
+plt.yticks(np.arange(-1, 1.1, 0.5))
 
 
 plt.tight_layout()
-
-
-
 
 
 # Salvando os gráficos
