@@ -15,7 +15,6 @@ h = [0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125]
 # Impulso
 xUnitario = [1, 0, 0, 0, 0, 0]
 
-
 plt.subplot(311)
 plt.title("Impulso unitário")
 plt.xlabel("n")

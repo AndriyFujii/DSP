@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 # Lendo arquivo como binario
 try:
-    with open ('wn.pcm', 'rb') as file:
+    with open ('Sweep10_3600.pcm', 'rb') as file:
         fid = file.read ()
         file.close()
 except:
@@ -54,7 +54,7 @@ plt.tight_layout()
 plt.savefig("graficos_media_movel.png", format="png")
 
 # Salvando o arquivo de saída
-with open("wn_media_movel.pcm", "wb") as new_file:
+with open("Sweep10_3600_media_movel.pcm", "wb") as new_file:
     for x in saida:
         new_file.write(x)
 new_file.close()

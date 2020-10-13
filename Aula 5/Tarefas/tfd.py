@@ -4,7 +4,6 @@
 @author: Andriy
 """
 
-
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
@@ -23,7 +22,6 @@ plt.figure("Gráficos",figsize=(15,12))
 
 # Plotando os gráficos
 x = np.linspace(-1, 8, 10)
-
 
 plt.subplot(211)
 plt.title("Mod x")
