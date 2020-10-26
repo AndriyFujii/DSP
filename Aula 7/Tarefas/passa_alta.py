@@ -6,16 +6,11 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from passa_baixa import *
 
-def PB(data_i, data_len, saida, media_buf, a, b):
-    data_o = np.zeros_like(data_i)
-    for i in range(data_len):
-        media_buf[0] = data_i[i]
-
-        m = a*media_buf[0] + a*media_buf[1] - b*saida
-        saida = m
-        data_o[i] = m
-        media_buf[1:2] = media_buf[0:1]
+def PA(data_i, data_len, saida, media_buf, a, b):
+    data_pb = PB(data_i, data_len, saida, media_buf, a, b)
+    data_o = data_i - data_pb
     return data_o
 
 if __name__ == '__main__':
@@ -23,7 +18,7 @@ if __name__ == '__main__':
     media_buf = np.zeros(2)
     saida = 0
     
-    Fc = 1000
+    Fc = 3000
     Fs = sample_rate
     
     # calcula FC
@@ -42,9 +37,8 @@ if __name__ == '__main__':
         data_i = np.frombuffer(buf, dtype='int16')
         data_len = len(data_i)
     
-        data_o = PB(data_i, data_len, saida, media_buf, a, b)
-    
-    
+        data_o = PA(data_i, data_len, saida, media_buf, a, b)
+        
     # amostra de 100 ms
     t = np.arange(0, data_len/sample_rate, 1 / sample_rate)
     
@@ -70,7 +64,7 @@ if __name__ == '__main__':
     plt.xticks(np.arange(0, 5.1, 1))
     plt.yticks(np.arange(-15000, 15000.1, 5000))
     
-    file_name = "Sweep10_3600_PB.pcm"
+    file_name = "Sweep10_3600_PA.pcm"
     with open(file_name, 'wb') as f:
         for d in data_o:
             f.write(d)
