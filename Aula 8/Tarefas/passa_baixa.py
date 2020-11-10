@@ -12,6 +12,7 @@ def PB(data_i, data_len, saida, media_buf, a, b):
     for i in range(data_len):
         media_buf[0] = data_i[i]
 
+        # Slides aula 7 tustin
         m = a*media_buf[0] + a*media_buf[1] - b*saida
         saida = m
         data_o[i] = m
@@ -26,13 +27,10 @@ if __name__ == '__main__':
     Fc = 1000
     Fs = sample_rate
     
-    # calcula FC
     wc = 2*np.pi*Fc
     
-    # F'
     F1 = 2 * Fs
     
-    # coeficientes
     a = wc/(F1+wc)
     b = (wc-F1)/(F1+wc)
     
@@ -45,7 +43,6 @@ if __name__ == '__main__':
         data_o = PB(data_i, data_len, saida, media_buf, a, b)
     
     
-    # amostra de 100 ms
     t = np.arange(0, data_len/sample_rate, 1 / sample_rate)
     
     

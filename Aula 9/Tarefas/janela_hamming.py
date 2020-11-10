@@ -14,7 +14,7 @@ M = 2
 
 i = np.arange(0, M, 1/sample_rate)
 
-# função hamming do livro
+# função hamming do livro cap 16 equação 16-1
 w_i = 0.54 - 0.46 * np.cos(2*np.pi*i/M)
 
 
