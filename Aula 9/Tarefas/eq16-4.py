@@ -7,13 +7,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def kernelFilter(i, M, h, Fc):
+def kernelFilter(M, h, Fc):
     for i in range(M):
         if i - M / 2 == 0:
             h[i] = 2 * np.pi * Fc
         else:
             h[i] = np.sin(2 * np.pi * Fc * (i - M / 2)) / (i - M / 2)
         h[i] = h[i] * (0.54 - 0.46 * np.cos(2 * np.pi * (i / M)))
+    return h
         
 sample_rate = 8000        
 
@@ -21,11 +22,8 @@ sample_rate = 8000
 M = 1000
 Fc = 0.02
 
-i = np.arange(0, M, 1/sample_rate)
 h = np.zeros(M)
-
-
-kernelFilter(i, M, h, Fc)
+h = kernelFilter(M, h, Fc)
 
 
 plt.figure("Gráficos",figsize=(15,15))
