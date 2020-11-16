@@ -41,6 +41,10 @@ for i in range(M):
     h[i] = h[i] / soma
 
 
+with open('coeficientes_pb.dat', 'w') as f:
+    for d in h:
+        f.write(str(d.astype(np.float16))+",\n")
+
 read_path = "Sweep_3800.pcm"
 with open(read_path, 'rb') as f:
     buf = f.read()

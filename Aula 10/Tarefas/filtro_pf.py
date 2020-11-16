@@ -58,6 +58,11 @@ for i in range(M):
 h_pa = -h_pa
 h_pa[int(M/2)] += 1
 
+h = np.convolve(h_pa, h_pb)
+
+with open('coeficientes_pf.dat', 'w') as f:
+    for d in h:
+        f.write(str(d.astype(np.float16))+",\n")
 
 read_path = "Sweep_3800.pcm"
 with open(read_path, 'rb') as f:
@@ -65,9 +70,7 @@ with open(read_path, 'rb') as f:
     data_i = np.frombuffer(buf, dtype='int16')
     data_len = len(data_i)
 
-    # PB * PA = PF
-    data_o = np.convolve(h_pb, data_i)
-    data_o = np.convolve(h_pa, data_o)
+    data_o = np.convolve(h, data_i)
     data_o = data_o.astype(dtype='int16')
 
 
@@ -76,7 +79,7 @@ t = np.arange(0, data_len/Fs, 1 / Fs)
 
 plt.figure("Gráficos",figsize=(15,12))
 
-plt.subplot(611)
+plt.subplot(411)
 plt.title("Entrada")
 plt.xlabel("Tempo")
 plt.ylabel("Amplitude")
@@ -85,7 +88,7 @@ plt.plot(t, data_i[: len(t)])
 #plt.xticks(np.arange(0, 5.1, 1))
 #plt.yticks(np.arange(-15000, 15000.1, 5000))
 
-plt.subplot(612)
+plt.subplot(412)
 plt.title("Saída")
 plt.xlabel("Tempo")
 plt.ylabel("Amplitude")
@@ -94,34 +97,22 @@ plt.plot(t, data_o[: len(t)])
 
 [w_pb, h_pb] = freqz(h_pb, worN=Fs, fs=1)
 [w_pa, h_pa] = freqz(h_pa, worN=Fs, fs=1)
+[w, h] = freqz(h, worN=Fs, fs=1)
 
-plt.subplot(613)
+plt.subplot(413)
 plt.title("Resposta em frequência")
 plt.xlabel("Número de amostras")
 plt.ylabel("Amplitude")
 plt.grid(1)
-plt.plot(w_pb, abs(h_pb))
+plt.plot(w, abs(h))
 
-plt.subplot(614)
-plt.title("Resposta em frequência")
-plt.xlabel("Número de amostras")
-plt.ylabel("Amplitude")
-plt.grid(1)
-plt.plot(w_pa, abs(h_pa))
-
-plt.subplot(615)
+plt.subplot(414)
 plt.title("Resposta em frequência (dB)")
 plt.xlabel("Frequência")
 plt.ylabel("Amplitude")
 plt.grid(1)
-plt.plot(w_pb, 20*np.log10(abs(h_pb)))
+plt.plot(w, 20*np.log10(abs(h)))
 
-plt.subplot(616)
-plt.title("Resposta em frequência (dB)")
-plt.xlabel("Frequência")
-plt.ylabel("Amplitude")
-plt.grid(1)
-plt.plot(w_pa, 20*np.log10(abs(h_pa)))
 
 plt.tight_layout()
 

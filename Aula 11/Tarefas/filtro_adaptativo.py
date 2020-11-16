@@ -44,6 +44,10 @@ for i in range(itera):
     wn = wn + 2 * mu * en * xn
 
 
+# salva coeficientes
+with open('coeficientes_fa.dat', 'w') as f:
+    for d in wn:
+        f.write(str(d.astype(np.float16))+",\n")
 
 
 t = np.arange(0, N / 8000, 1 / 8000)

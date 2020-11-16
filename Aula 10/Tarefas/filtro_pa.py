@@ -43,6 +43,10 @@ for i in range(M):
 h = -h
 h[int(M/2)] += 1
 
+with open('coeficientes_pa.dat', 'w') as f:
+    for d in h:
+        f.write(str(d.astype(np.float16))+",\n")
+
 read_path = "Sweep_3800.pcm"
 with open(read_path, 'rb') as f:
     buf = f.read()
