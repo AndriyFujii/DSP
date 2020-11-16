@@ -17,7 +17,7 @@ M = 2
 i = np.arange(0, M, 1/sample_rate)
 
 # função sinc do livro cap 16 equação 16-2
-w_i = 0.42 - 0.5 * np.cos(2*np.pi*i/M) - 0.08 * np.cos(4*np.pi*i/M)
+w_i = 0.42 - 0.5 * np.cos(2*np.pi*i/M) + 0.08 * np.cos(4*np.pi*i/M)
 
 plt.figure("Gráficos",figsize=(15,15))
     
