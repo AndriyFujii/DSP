@@ -18,7 +18,7 @@ def kernelFilter(M, h, Fc):
     return h
 
 Fs = 8000
-Fc = 800
+Fc = 600
 Bw = 200
 
 # Normalizando

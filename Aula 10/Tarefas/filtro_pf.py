@@ -18,8 +18,8 @@ def kernelFilter(M, h, Fc):
     return h
 
 Fs = 8000
-Fc1 = 400
-Fc2 = 800
+Fc1 = 600
+Fc2 = 3000
 Bw = 200
 
 Bw = Bw / Fs
@@ -58,7 +58,7 @@ for i in range(M):
 h_pa = -h_pa
 h_pa[int(M/2)] += 1
 
-h = np.convolve(h_pa, h_pb)
+h = np.convolve(h_pa, h_pb, 'same')
 
 with open('coeficientes_pf.dat', 'w') as f:
     for d in h:

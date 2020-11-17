@@ -1,17 +1,10 @@
-/* Implementação de um filtro
-Lê um arquivo binário com amostras em 16bits
-Salva arquivo filtrado também em 16 bits
-George
- */
 #include <stdio.h>
 #include <fcntl.h>
 #include <io.h>
 
-//#define NSAMPLES 160 // Numero de coeficientes
-//#define NSAMPLES 160 
-#define NSAMPLES 319
-//#define NSAMPLES 637
-//#define NSAMPLES 160
+#define NSAMPLES 160
+
+
 
 int main() {
   FILE * in_file, * out_file;
@@ -24,12 +17,15 @@ int main() {
 
   float y = 0;
 
+  float g_pb = 0.1;
+  float g_pa = 0.9;
+  float g_pf = 0.5;
+
   //Carregando os coeficientes do filtro média móvel
   float coef[NSAMPLES] = {
-        //#include "coeficientes_pb.dat"
+        #include "coeficientes_pb.dat"
         //#include "coeficientes_pa.dat"
-        #include "coeficientes_pf.dat"
-        //#include "coeficientes_eq.dat"
+        //#include "coeficientes_pf.dat"
         //#include "coeficientes_fa.dat"
   };
 

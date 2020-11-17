@@ -100,9 +100,6 @@ h_pf = np.convolve(h_pf_pb, h_pf_pa)
 
 h = np.convolve(h_pa, h_pb)
 h = np.convolve(h, h_pf)
-with open('coeficientes_eq.dat', 'w') as f:
-    for d in h:
-        f.write(str(d.astype(np.float16))+",\n")
 
 gb = 0.7
 gf = 0.5
