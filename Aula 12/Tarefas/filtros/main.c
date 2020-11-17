@@ -7,9 +7,9 @@ George
 #include <fcntl.h>
 #include <io.h>
 
-#define NSAMPLES 160 // Numero de coeficientes
+//#define NSAMPLES 160 // Numero de coeficientes
 //#define NSAMPLES 160 
-//#define NSAMPLES 320
+#define NSAMPLES 319
 //#define NSAMPLES 637
 //#define NSAMPLES 160
 
@@ -24,17 +24,13 @@ int main() {
 
   float y = 0;
 
-  int coef;
-  printf("Entre com o coeficiente a ser utilizado:\n(1)PB\n(2)PA\n(3)PF\n(4)EQ\n(5)FA\n");
-  scanf("%d", &coef);
-
   //Carregando os coeficientes do filtro média móvel
   float coef[NSAMPLES] = {
         //#include "coeficientes_pb.dat"
         //#include "coeficientes_pa.dat"
-        //#include "coeficientes_pf.dat"
+        #include "coeficientes_pf.dat"
         //#include "coeficientes_eq.dat"
-        #include "coeficientes_fa.dat"
+        //#include "coeficientes_fa.dat"
   };
 
   /* abre os arquivos de entrada e saida */
