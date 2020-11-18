@@ -12,7 +12,6 @@ int main() {
   short entrada, saida, xn[NSAMPLES];
 
   double wn [NSAMPLES];
-  double dn = 0.0;
   double yn = 0.0;
   double erro = 0.0;
 
@@ -41,7 +40,6 @@ int main() {
 
   do {
 
-    dn = 0;
     yn = 0;
 
     // lê far do arquivo
