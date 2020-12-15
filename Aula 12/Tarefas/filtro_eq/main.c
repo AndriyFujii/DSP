@@ -18,9 +18,9 @@ int main() {
   float y_pf;
   float y;
 
-  float g_pb = 0.7;
+  float g_pb = 0.5;
   float g_pf = 0.5;
-  float g_pa = 0.3;
+  float g_pa = 0.5;
 
 
   float coef_pb[NSAMPLES] = {

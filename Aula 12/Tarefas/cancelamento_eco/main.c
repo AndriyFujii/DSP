@@ -69,7 +69,8 @@ int main() {
     }
 
     saida = (short) erro;
-
+	
+	
     //escreve no arquivo de saída
     fwrite( & saida, sizeof(short), 1, out_file);
 

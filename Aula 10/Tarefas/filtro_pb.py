@@ -18,7 +18,7 @@ def kernelFilter(M, h, Fc):
     return h
 
 Fs = 8000
-Fc = 600
+Fc = 1000
 Bw = 200
 
 # Normalizando
@@ -45,7 +45,7 @@ with open('coeficientes_pb.dat', 'w') as f:
     for d in h:
         f.write(str(d.astype(np.float16))+",\n")
 
-read_path = "Sweep_3800.pcm"
+read_path = "Seno_600.pcm"
 with open(read_path, 'rb') as f:
     buf = f.read()
     data_i = np.frombuffer(buf, dtype='int16')

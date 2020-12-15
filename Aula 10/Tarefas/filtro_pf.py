@@ -18,8 +18,8 @@ def kernelFilter(M, h, Fc):
     return h
 
 Fs = 8000
-Fc1 = 600
-Fc2 = 3000
+Fc1 = 1000
+Fc2 = 2000
 Bw = 200
 
 Bw = Bw / Fs

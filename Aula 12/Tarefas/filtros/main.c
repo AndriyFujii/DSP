@@ -26,7 +26,6 @@ int main() {
         #include "coeficientes_pb.dat"
         //#include "coeficientes_pa.dat"
         //#include "coeficientes_pf.dat"
-        //#include "coeficientes_fa.dat"
   };
 
   /* abre os arquivos de entrada e saida */
